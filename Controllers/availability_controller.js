@@ -10,10 +10,10 @@ const createAvailability=async(req,res)=>{
         endTime:req.body.endTime
        })
        await availability.save()
-       res.status(200).json(availability)
+       res.status(201).json(availability)
     }
     catch (err) {
-        res.status(404).josn({err})
+        res.status(404).json({err})
      }
 }
 
@@ -25,7 +25,7 @@ const getAvailability = async(req,res)=>{
         isBooked:false,
         startTime:{$gt: new Date()}
       }).populate('professor','name');
-      res.json(availabilities)
+      res.status(200).json(availabilities)
     }
 
     catch (err) {

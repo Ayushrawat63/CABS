@@ -25,7 +25,7 @@ const createAppointment = async (req, res) => {
     res.status(201).json(newAppointment)
 
   } catch (err) {
-    res.status(404).json({error:"server error"})
+    res.status(400).json({error:"server error"})
  }
 };
 
@@ -53,7 +53,7 @@ const cancelAppointment =async (req,res)=>{
     await availability.save();
     await Appointment.findByIdAndDelete(req.params.appointmentId)
 
-    res.json({message:`Appointment with id ${req.params.appointmentId} is cancled by ${req.user.role}`})
+    res.status(200).json({message:`Appointment with id ${req.params.appointmentId} is cancled by ${req.user.role}`})
 
   }
   catch (err) {
@@ -69,7 +69,7 @@ const getMyAppointment =async (req,res)=>{
     const appointments =await Appointment.find(data).populate('professor','name').populate('student','name').populate('availability');
     if(appointments.length===0)
        return res.json({message:"You have zero Appointment"})
-     res.json(appointments)
+     res.status(200).json(appointments)
 
   }
   catch (err) {

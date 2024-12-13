@@ -12,7 +12,7 @@ const createUser = async (req, res) => {
       role: body.role,
     });
     await newUser.save();
-    res.json(newUser);
+    res.status(201).json(newUser);
   } catch (err) {
     res.status(404).josn({err})
  }
