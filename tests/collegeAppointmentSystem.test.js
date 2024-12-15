@@ -8,7 +8,6 @@ const Appointment = require("../Models/appointment");
 
 beforeAll(async () => {
   await connectDB();
-
   await User.deleteMany({});
   await Appointment.deleteMany({});
   await Availability.deleteMany({});
@@ -23,7 +22,7 @@ describe("Complete appointment booking and cancellation flow", () => {
   let professorP1Id, availabilityId;
   let appointmentA1Id;
 
-  test("Register a professor", async () => {
+  test("Register a professorP1", async () => {
     const res = await request(app).post("/addUser").send({
       name: "Professor one",
       email: "professor1@college.edu",
@@ -31,11 +30,10 @@ describe("Complete appointment booking and cancellation flow", () => {
       role: "professor",
     });
     professorP1Id = res.body._id;
-
     expect(res.statusCode).toBe(201);
   });
 
-  test("Register a student1", async () => {
+  test("Register a studentA1", async () => {
     const res = await request(app).post("/addUser").send({
       name: "Student A1",
       email: "student1@college.edu",
@@ -45,7 +43,7 @@ describe("Complete appointment booking and cancellation flow", () => {
     expect(res.statusCode).toBe(201);
   });
 
-  test("Register a student2", async () => {
+  test("Register a studentA2", async () => {
     const res = await request(app).post("/addUser").send({
       name: "Student A2",
       email: "student2@college.edu",
@@ -143,4 +141,3 @@ describe("Complete appointment booking and cancellation flow", () => {
     expect(studentA1Appointments.body.length).toBe(undefined);
   });
 });
-
