@@ -9,7 +9,7 @@ const app = express()
 app.use(bodyParser.json())
 
 app.get('/',(req,res)=>{
-    res.json({message:"hello from user"})
+    res.json({message:"Hello,This is a college Appointment System "})
 })
 
 

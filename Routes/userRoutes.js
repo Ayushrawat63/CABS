@@ -4,9 +4,9 @@ const auth = require('../Middleware/auth');
 
 const router =express.Router();
 
-router.get('/allProfessor',auth,listallprofessor)
 router.post('/addUser',createUser)
 router.post('/login',loginUser)
+router.get('/allProfessor',auth,listallprofessor)
 
 
 module.exports=router
