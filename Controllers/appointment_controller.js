@@ -66,7 +66,8 @@ const getMyAppointment =async (req,res)=>{
   try{
     const data = req.user.role === "student"? {student:req.user.userId}:{professor:req.user.userId} 
 
-    const appointments =await Appointment.find(data).populate('professor','name').populate('student','name').populate('availability');
+    const appointments =await Appointment.find(data).populate('professor','name').populate('student','name');
+  
     if(appointments.length===0)
        return res.json({message:"You have zero Appointment"})
      res.status(200).json(appointments)

@@ -1,8 +1,8 @@
 const mongoose =require('mongoose')
-
+require('dotenv').config()
 const connectDb = async()=>{
     try{
-      await  mongoose.connect("mongodb://localhost:27017/college_System").then(()=>{console.log("mongodb connected")});
+      await  mongoose.connect(process.env.MONGO_URI).then(()=>{console.log("mongodb connected")});
     }
     catch (err) {
         console.error('MongoDB connection error:', err);
